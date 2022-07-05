@@ -120,60 +120,60 @@ import {
   getRules,
   fetchLevels,
   fetchAddons,
-  fetchView,
-} from "diandi-admin/lib/api/admin/permission.js";
+  fetchView
+} from 'diandi-admin/lib/api/admin/permission.js'
 // import waves from '@/directive/waves' // waves directive
-import { parseTime } from "@/utils";
+import { parseTime } from '@/utils'
 export default {
   data() {
     return {
-      labelPosition: "top",
+      labelPosition: 'top',
       accounts: {
-        appid: "",
-        token: "",
-        aeskey: "",
-        secret: "",
-        url: "",
-        imag: "",
+        appid: '',
+        token: '',
+        aeskey: '',
+        secret: '',
+        url: '',
+        imag: ''
       },
-      uploudUrl: "",
+      uploudUrl: '',
       headers: {},
-      password: "",
-      actives: "first",
+      password: '',
+      actives: 'first',
       // 表格数据 start
       tableColumns: [
-        { label: "会员ID", prop: "ID" },
-        { label: "头像", prop: "head" },
-        { label: "用户名", prop: "name" },
-        { label: "手机号", prop: "mobile" },
-        { label: "状态", prop: "state" },
-        { label: "时间", prop: "time" },
+        { label: '会员ID', prop: 'ID' },
+        { label: '头像', prop: 'head' },
+        { label: '用户名', prop: 'name' },
+        { label: '手机号', prop: 'mobile' },
+        { label: '状态', prop: 'state' },
+        { label: '时间', prop: 'time' }
       ],
       tableHandle: [
         {
-          label: "编辑",
-          type: "primary",
+          label: '编辑',
+          type: 'primary',
           isPop: false,
           method: (row) => {
-            this.editItem(row);
-          },
+            this.editItem(row)
+          }
         },
         {
-          label: "删除",
-          type: "danger",
+          label: '删除',
+          type: 'danger',
           isPop: true,
           method: (row) => {
-            this.deleteItem(row);
-          },
+            this.deleteItem(row)
+          }
         },
         {
-          label: "修改密码",
-          type: "warning",
+          label: '修改密码',
+          type: 'warning',
           isPop: false,
           method: (row) => {
-            this.authItem(row);
-          },
-        },
+            this.authItem(row)
+          }
+        }
       ],
       // 表格数据end
       // 检索 start
@@ -181,30 +181,30 @@ export default {
         data: {
           page: 1,
           limit: 20,
-          name: "",
-          parent_id: "",
-          description: "",
+          name: '',
+          parent_id: '',
+          description: ''
           // sex: 1,
           // date: null,
           // dateTime: null,
           // range: null
         },
         fieldList: [
-          { label: "会员ID", type: "input", value: "AuthItemSearch[ID]" },
-          { label: "会员编码", type: "input", value: "AuthItemSearch[num]" },
-          { label: "openid", type: "input", value: "AuthItemSearch[openid]" },
-          { label: "手机号", type: "input", value: "AuthItemSearch[mobile]" },
-          { label: "用户名", type: "input", value: "AuthItemSearch[name]" },
-          { label: "状态", type: "input", value: "AuthItemSearch[state]" },
+          { label: '会员ID', type: 'input', value: 'AuthItemSearch[ID]' },
+          { label: '会员编码', type: 'input', value: 'AuthItemSearch[num]' },
+          { label: 'openid', type: 'input', value: 'AuthItemSearch[openid]' },
+          { label: '手机号', type: 'input', value: 'AuthItemSearch[mobile]' },
+          { label: '用户名', type: 'input', value: 'AuthItemSearch[name]' },
+          { label: '状态', type: 'input', value: 'AuthItemSearch[state]' },
           {
-            label: "会员组",
-            type: "select",
-            value: "AuthItemSearch[member_group]",
-          },
-        ],
+            label: '会员组',
+            type: 'select',
+            value: 'AuthItemSearch[member_group]'
+          }
+        ]
       },
       listTypeInfo: {
-        addonsList: this.initAddons(),
+        addonsList: this.initAddons()
       },
       // 检索 end
       // 表单数据 start
@@ -212,38 +212,38 @@ export default {
       formConfig: {
         formDesc: {
           permission_type: {
-            type: "radio",
-            label: "权限类型",
+            type: 'radio',
+            label: '权限类型',
             options: [
-              { text: "目录", value: 0 },
-              { text: "页面", value: 1 },
-              { text: "按钮", value: 2 },
-              { text: "接口", value: 3 },
-            ],
+              { text: '目录', value: 0 },
+              { text: '页面', value: 1 },
+              { text: '按钮', value: 2 },
+              { text: '接口', value: 3 }
+            ]
           },
           name: {
-            type: "input",
-            label: "名称",
+            type: 'input',
+            label: '名称'
           },
           rule_name: {
-            type: "select",
-            label: "规则名称",
+            type: 'select',
+            label: '规则名称',
             isOptions: true,
             options: getRules().then((res) => {
-              return res.data;
-            }),
+              return res.data
+            })
           },
           parent_id: {
-            type: "tree-select",
-            label: "父级权限",
+            type: 'tree-select',
+            label: '父级权限',
             isOptions: true,
             options: fetchLevels().then((res) => {
-              const arr = [{ id: 0, label: "选择父级权限" }];
-              return arr.concat(res.data);
+              const arr = [{ id: 0, label: '选择父级权限' }]
+              return arr.concat(res.data)
             }),
             attrs: {
-              showAllLevels: false,
-            },
+              showAllLevels: false
+            }
           },
           // routes: {
           //   type: 'tree-select',
@@ -258,30 +258,30 @@ export default {
           //   }
           // },
           description: {
-            type: "textarea",
-            label: "描述",
+            type: 'textarea',
+            label: '描述',
             attrs: {
-              autosizeType: "switch",
-              autosize: false,
-            },
+              autosizeType: 'switch',
+              autosize: false
+            }
           },
           data: {
-            type: "textarea",
-            label: "数据",
+            type: 'textarea',
+            label: '数据',
             attrs: {
-              autosizeType: "switch",
-              autosize: false,
-            },
-          },
+              autosizeType: 'switch',
+              autosize: false
+            }
+          }
         },
         order: [
-          "permission_type",
-          "name",
-          "rule_name",
-          "parent_id",
-          "description",
-          "data",
-        ],
+          'permission_type',
+          'name',
+          'rule_name',
+          'parent_id',
+          'description',
+          'data'
+        ]
       },
       // 表单数据 end
       total: 0,
@@ -289,14 +289,14 @@ export default {
       temp: {
         id: undefined,
         importance: 1,
-        remark: "",
+        remark: '',
         timestamp: new Date(),
-        title: "",
-        type: "",
-        status: "published",
+        title: '',
+        type: '',
+        status: 'published'
       },
       dialogFormVisible: false,
-      textMap: "编辑",
+      textMap: '编辑',
       downloadLoading: false,
       // 权限项管理
       permissionId: 0,
@@ -304,152 +304,152 @@ export default {
       permissionValue: {
         route: [],
         permission: [],
-        role: [],
+        role: []
       },
       permissionData: {
         route: [],
         permission: [],
-        role: [],
+        role: []
       },
-      permissionTitle: "修改密码",
-    };
+      permissionTitle: '修改密码'
+    }
   },
   created() {
-    this.getList();
+    this.getList()
   },
   methods: {
     cutClick(tab, event) {
-      console.log(tab, event);
+      console.log(tab, event)
     },
     initAddons() {
-      const arr = [];
-      arr.push({ id: " ", name: "选择模块" });
+      const arr = []
+      arr.push({ id: ' ', name: '选择模块' })
       fetchAddons().then((res) => {
-        const keys = Object.keys(res.data);
-        const values = Object.values(res.data);
+        const keys = Object.keys(res.data)
+        const values = Object.values(res.data)
         values.forEach((item, index) => {
-          arr.push({ id: keys[index], name: item });
-        });
-      });
+          arr.push({ id: keys[index], name: item })
+        })
+      })
 
-      return arr;
+      return arr
     },
     handleSelectionChange(val) {
-      console.log("传递来的", val);
+      console.log('传递来的', val)
     },
     // 单行数据删除
     deleteItem(row) {
-      const that = this;
+      const that = this
       deletePermission(row.id).then((res) => {
-        console.log("更新", res);
-        that.getList();
-        that.dialogFormVisible = false;
-      });
+        console.log('更新', res)
+        that.getList()
+        that.dialogFormVisible = false
+      })
     },
     authItem(row) {
-      const that = this;
-      that.dialogAuthVisible = true;
-      that.permissionId = row.id;
+      const that = this
+      that.dialogAuthVisible = true
+      that.permissionId = row.id
 
       fetchView(row.id).then((res) => {
-        console.log("assigneds", res.data.assignedKey);
-        that.permissionData = res.data.availables;
-        that.permissionValue = res.data.assignedKey;
-      });
+        console.log('assigneds', res.data.assignedKey)
+        that.permissionData = res.data.availables
+        that.permissionValue = res.data.assignedKey
+      })
     },
     getList() {
-      const that = this;
-      that.listLoading = true;
+      const that = this
+      that.listLoading = true
       fetchList(that.filterInfo.data).then((response) => {
-        console.log("response", response);
-        that.total = response.data.dataProvider.total;
-        that.list = response.data.list;
-        console.log("列表数据层级测试", that.list);
-        that.listLoading = false;
-      });
+        console.log('response', response)
+        that.total = response.data.dataProvider.total
+        that.list = response.data.list
+        console.log('列表数据层级测试', that.list)
+        that.listLoading = false
+      })
     },
     /** 搜索 */
     handleFilter(row) {
-      const that = this;
-      console.log(row);
-      that.$set(that.filterInfo, "data", row);
-      console.log("检索前", that.filterInfo.data);
-      that.getList();
+      const that = this
+      console.log(row)
+      that.$set(that.filterInfo, 'data', row)
+      console.log('检索前', that.filterInfo.data)
+      that.getList()
     },
     /** 重置 */
     handleReset(row) {
-      console.log(row);
+      console.log(row)
     },
     /** 焦点失去事件 */
     handleEvent(row) {
-      console.log(row);
+      console.log(row)
     },
     handleCreate() {
-      const that = this;
-      that.dialogFormVisible = true;
+      const that = this
+      that.dialogFormVisible = true
     },
     handleDeleteAll() {
-      console.log("删除");
+      console.log('删除')
     },
     handleDelete(row, index) {
       this.$notify({
-        title: "Success",
-        message: "Delete Successfully",
-        type: "success",
-        duration: 2000,
-      });
-      this.list.splice(index, 1);
+        title: 'Success',
+        message: 'Delete Successfully',
+        type: 'success',
+        duration: 2000
+      })
+      this.list.splice(index, 1)
     },
     editItem(row) {
-      const that = this;
-      that.formData = { ...row };
-      that.dialogFormVisible = true;
+      const that = this
+      that.formData = { ...row }
+      that.dialogFormVisible = true
     },
     handleDownload() {
-      this.downloadLoading = true;
-      import("@/vendor/Export2Excel").then((excel) => {
-        const tHeader = ["title", "create_time"];
-        const filterVal = [{ title: "12", create_time: "23435345353" }];
-        const data = this.formatJson(filterVal);
+      this.downloadLoading = true
+      import('@/vendor/Export2Excel').then((excel) => {
+        const tHeader = ['title', 'create_time']
+        const filterVal = [{ title: '12', create_time: '23435345353' }]
+        const data = this.formatJson(filterVal)
         excel.export_json_to_excel({
           header: tHeader,
           data,
-          filename: "table-list",
-        });
-        this.downloadLoading = false;
-      });
+          filename: 'table-list'
+        })
+        this.downloadLoading = false
+      })
     },
     formatJson(filterVal) {
       return this.list.map((v) =>
         filterVal.map((j) => {
-          if (j === "timestamp") {
-            return parseTime(v[j]);
+          if (j === 'timestamp') {
+            return parseTime(v[j])
           } else {
-            return v[j];
+            return v[j]
           }
         })
-      );
+      )
     },
     handleResponse(response, file, fileList) {
-      console.log("response", response);
+      console.log('response', response)
       // 根据响应结果, 设置 URL
-      this.accounts.url = response.attachment;
-      this.accounts.imag = response.url;
-      return response.url;
+      this.accounts.url = response.attachment
+      this.accounts.imag = response.url
+      return response.url
     },
     upLoad() {
       // 触发上传图片按钮
-      console.log("点击上传按钮");
-      this.$refs["uploadImage"].$refs["upload"].$refs[
-        "upload-inner"
-      ].handleClick();
+      console.log('点击上传按钮')
+      this.$refs['uploadImage'].$refs['upload'].$refs[
+        'upload-inner'
+      ].handleClick()
     },
     beforeRemove(index) {
-      console.log(index, this.$refs.uploadImage);
-      this.accounts.url = "";
-    },
-  },
-};
+      console.log(index, this.$refs.uploadImage)
+      this.accounts.url = ''
+    }
+  }
+}
 </script>
 <style>
 .el-transfer-panel {

@@ -1,3 +1,9 @@
+/**
+ * @Author: Wang chunsheng  email:2192138785@qq.com
+ * @Date:   2022-04-19 09:37:19
+ * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
+ * @Last Modified time: 2022-05-05 15:10:39
+ */
 export default {
   computed: {
     device() {

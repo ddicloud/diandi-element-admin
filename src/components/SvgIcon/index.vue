@@ -1,6 +1,6 @@
 <template>
   <div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon" v-on="$listeners" />
-  <svg v-else :class="svgClass" aria-hidden="true" v-on="$listeners">
+  <svg v-else :class="svgClass" :style="iconStyle" aria-hidden="true" v-on="$listeners">
     <use :xlink:href="iconName" />
   </svg>
 </template>
@@ -19,6 +19,10 @@ export default {
     className: {
       type: String,
       default: ''
+    },
+    size: {
+      type: Number,
+      default: 16
     }
   },
   computed: {
@@ -39,6 +43,12 @@ export default {
       return {
         mask: `url(${this.iconClass}) no-repeat 50% 50%`,
         '-webkit-mask': `url(${this.iconClass}) no-repeat 50% 50%`
+      }
+    },
+    iconStyle() {
+      return {
+        'width': `${this.size}px`,
+        'height': `${this.size}px`
       }
     }
   }

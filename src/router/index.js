@@ -2,7 +2,7 @@
  * @Author: Wang chunsheng  email:2192138785@qq.com
  * @Date:   2021-10-27 09:56:28
  * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
- * @Last Modified time: 2022-02-14 16:42:48
+ * @Last Modified time: 2022-04-16 09:28:57
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -84,23 +84,23 @@ export const constantRoutes = [
     component: diandiAdmin['error-page/401'],
     hidden: true
   },
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        component: diandiAdmin['dashboard'],
-        name: '首页',
-        meta: {
-          title: '首页',
-          icon: 'dashboard',
-          affix: true
-        }
-      }
-    ]
-  },
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   redirect: '/dashboard',
+  //   children: [
+  //     {
+  //       path: 'dashboard',
+  //       component: diandiAdmin['dashboard'],
+  //       name: '首页',
+  //       meta: {
+  //         title: '首页',
+  //         icon: 'dashboard',
+  //         affix: true
+  //       }
+  //     }
+  //   ]
+  // },
   {
     path: '/profile',
     component: Layout,

@@ -8,11 +8,11 @@
         to="/"
       >
         <img v-if="webSite.blogo" :src="webSite.blogo" class="sidebar-logo">
-        <!-- <h1 v-else class="sidebar-title">{{ webSite.name }}</h1> -->
+        <h1 v-else class="sidebar-title">{{ siteName }}{{ storeName?'-'+storeName:'' }}</h1>
       </router-link>
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
         <img v-if="webSite.blogo" :src="webSite.blogo" class="sidebar-logo">
-        <!-- <h1 class="sidebar-title">{{ webSite.name }}</h1> -->
+        <h1 class="sidebar-title">{{ siteName }}{{ storeName?'-'+storeName:'' }}</h1>
       </router-link>
     </transition>
   </div>
@@ -20,6 +20,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { config } from '@/utils/publicUtil'
 export default {
   name: 'SidebarLogo',
   props: {
@@ -32,11 +33,12 @@ export default {
   data() {
     return {
       title: 'Vue Element Admin',
+      siteName: config.siteName,
       logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
     }
   },
   computed: {
-    ...mapGetters(['webSite', 'Layout'])
+    ...mapGetters(['webSite', 'Layout', 'storeName'])
   }
 }
 </script>

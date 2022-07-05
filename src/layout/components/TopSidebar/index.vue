@@ -39,9 +39,7 @@ import {
   isExternal
 } from '@/utils/validate'
 import path from 'path'
-import {
-  siteName
-} from '@/config/config'
+import { config } from '@/utils/publicUtil'
 export default {
   name: 'TopSidebar',
   components: {
@@ -52,7 +50,7 @@ export default {
     return {
       isActive: 0,
       leftSubMenu: [],
-      siteName: siteName
+      siteName: config.siteName
     }
   },
   computed: {
@@ -69,6 +67,9 @@ export default {
     },
     activeMenu() {
       const route = this.$route
+      if (route.path === '/' || route.path === '/dashboard') {
+        this.$store.dispatch('settings/setMenuType', 'system')
+      }
       const {
         meta,
         path

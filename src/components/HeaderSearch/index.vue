@@ -21,7 +21,7 @@
         </el-select>
       </div>
     </div>
-    <div v-if="isshowBloc === 'units'" class="header-store">
+    <!-- <div v-if="isshowBloc === 'units'" class="header-store">
       <div :class="{'show':showStore,'header-search-text-top':Layout == 'top','header-search-text':Layout != 'top'}" class="right-menu-item">
         <el-tooltip content="点击选择集团与商户" placement="bottom" effect="light">
           <svg-icon class-name="store-icon" icon-class="store" @click.stop="clickStore" />
@@ -41,7 +41,7 @@
           />
         </el-card>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </template>
@@ -61,7 +61,7 @@ import {
   getView
 } from 'diandi-admin/lib/api/addons/store.js'
 
-import { modeType } from '@/config/config'
+import { config } from '@/utils/publicUtil'
 
 export default {
   name: 'HeaderSearch',
@@ -127,7 +127,7 @@ export default {
         this.storeList = res.data.list
       }
     })
-    this.isshowBloc = modeType
+    this.isshowBloc = config.modeType
   },
   mounted() {
     this.searchPool = this.generateRoutes(this.routes)
@@ -232,6 +232,7 @@ export default {
       const that = this
       if (!data.business_name) {
         getView(data.store_id).then(res => {
+          console.log('商户数据', res)
           that.$store.dispatch('elForm/changeHEaders', {
             key: 'store-id',
             value: res.data.store_id

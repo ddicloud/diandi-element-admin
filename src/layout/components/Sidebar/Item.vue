@@ -17,7 +17,7 @@ export default {
     const vnodes = []
 
     if (icon) {
-      if (icon.includes('el-icon') || icon.includes('fa')) {
+      if (icon.includes('el-icon') || icon.includes('el-dd')) {
         vnodes.push(<i class={[icon, 'sub-el-icon']} />)
       } else {
         vnodes.push(<svg-icon icon-class={icon}/>)
@@ -37,5 +37,6 @@ export default {
   color: currentColor;
   width: 2em;
   height: 1em;
+  padding: 5px;
 }
 </style>

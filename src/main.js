@@ -2,7 +2,7 @@
  * @Author: Wang chunsheng  email:2192138785@qq.com
  * @Date:   2021-10-30 10:40:37
  * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
- * @Last Modified time: 2022-02-11 19:21:52
+ * @Last Modified time: 2022-05-10 15:06:15
  */
 import Vue from 'vue'
 import Cookies from 'js-cookie'
@@ -18,7 +18,7 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
-import { apiUrl } from '@/config/config'
+import { config } from '@/utils/publicUtil'
 import './icons' // icon
 import './permission' // permission control
 import './utils/error-log' // error log
@@ -35,6 +35,8 @@ import FireTable from '@/components/FireTable/index.vue'
 import iGlobal from '@/directive/global.js' // 引入 global.js
 import FireDataTable from '@/components/FireDataTable/index.vue'
 
+import echarts from 'echarts'
+
 import { dependencies, devDependencies } from '../package.json'
 
 Vue.prototype.$dependencies = dependencies
@@ -42,12 +44,15 @@ Vue.prototype.$devDependencies = devDependencies
 // if (!Vue && typeof window !== 'undefined' && window.Vue) {
 //   install(window.Vue)
 // }
+
 // 初始化表单全局配置
 import '@/utils/el-form.js'
 Vue.prototype.iGlobal = iGlobal
-Vue.prototype.apiUrl = apiUrl
+Vue.prototype.apiUrl = config.apiUrl
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
+Vue.prototype.$echarts = echarts
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

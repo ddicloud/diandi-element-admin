@@ -2,7 +2,7 @@
  * @Author: Wang chunsheng  email:2192138785@qq.com
  * @Date:   2021-10-30 10:40:26
  * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
- * @Last Modified time: 2022-02-17 16:18:25
+ * @Last Modified time: 2022-05-05 18:15:22
  */
 const getters = {
   sidebar: state => state.app.sidebar,
@@ -27,8 +27,10 @@ const getters = {
   moduleAll: state => state.permission.moduleAll,
   menutop: state => state.permission.menutop,
   LeftMenu: state => state.permission.LeftMenu,
+  pluginsMenu: state => state.permission.pluginsMenu,
   subLeftIsActive: state => state.permission.subLeftIsActive,
   menuType: state => state.settings.menuType,
+  plugins: state => state.settings.plugins,
   Layout: state => state.settings.Layout,
   baseUrl: state => state.settings.baseUrl,
   siteUrl: state => state.settings.siteUrl,

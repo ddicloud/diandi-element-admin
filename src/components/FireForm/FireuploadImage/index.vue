@@ -21,7 +21,7 @@
   </div>
 </template>
 <script>
-import { siteUrl } from '@/config/config'
+import { config } from '@/utils/publicUtil'
 import formMixin from 'diandi-ele-form/lib/mixins/formMixin'
 export default {
   name: 'ImageUploader',
@@ -50,7 +50,7 @@ export default {
     value: {
       handler(newVal) {
         if (newVal) {
-          this.imageUrl = siteUrl + '/attachment/' + newVal
+          this.imageUrl = config.siteUrl + '/attachment/' + newVal
         }
       },
       immediate: true,

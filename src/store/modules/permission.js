@@ -2,7 +2,7 @@
  * @Author: Wang chunsheng  email:2192138785@qq.com
  * @Date:   2021-10-30 10:40:26
  * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
- * @Last Modified time: 2022-02-15 15:42:00
+ * @Last Modified time: 2022-05-05 18:09:55
  */
 import {
   asyncRoutes,
@@ -59,6 +59,7 @@ const state = {
   menutop: [],
   menuType: 'system',
   Layout: 'top',
+  pluginsMenu: [],
   LeftMenu: [],
   subLeftIsActive: 0
 }
@@ -85,6 +86,9 @@ const mutations = {
   },
   SET_LEFTMENU: (state, LeftMenu) => {
     state.LeftMenu = LeftMenu
+  },
+  SET_PLUGINSMENU: (state, menus) => {
+    state.pluginsMenu = menus
   },
   SET_LEFTACTIVE: (state, subLeftIsActive) => {
     state.subLeftIsActive = subLeftIsActive
@@ -136,6 +140,16 @@ const actions = {
         reject(error)
       })
     })
+  },
+  setLeftMent({
+    commit
+  }, menus) {
+    commit('SET_LEFTMENU', menus)
+  },
+  setPluginsMent({
+    commit
+  }, menus) {
+    commit('SET_PLUGINSMENU', menus)
   },
   setMenuType({
     commit

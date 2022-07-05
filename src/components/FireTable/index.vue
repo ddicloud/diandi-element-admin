@@ -56,8 +56,8 @@
               cancel-button-text="取消"
               icon="el-icon-info"
               icon-color="red"
-              title="确定删除吗？"
-              @onConfirm="$message.success('操作成功');getList();btn.method(scope.row, scope)"
+              :title="btn.title?btn.title:'确定删除吗？'"
+              @confirm="$message.success('操作成功');getList();btn.method(scope.row, scope)"
             >
               <el-button slot="reference" style="margin: 5px;" size="mini" :type="btn.type">{{ btn.label }}</el-button>
             </el-popconfirm>

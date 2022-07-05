@@ -2,7 +2,7 @@
  * @Author: Wang chunsheng  email:2192138785@qq.com
  * @Date:   2021-10-30 10:40:26
  * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
- * @Last Modified time: 2022-02-17 16:12:43
+ * @Last Modified time: 2022-05-05 17:35:36
  */
 import variables from '@/styles/element-variables.scss'
 import defaultSettings from '@/settings'
@@ -10,7 +10,9 @@ const {
   showSettings,
   tagsView,
   fixedHeader,
-  sidebarLogo
+  sidebarLogo,
+  menuType,
+  Layout
 } = defaultSettings
 
 const state = {
@@ -19,8 +21,9 @@ const state = {
   tagsView: tagsView,
   fixedHeader: fixedHeader,
   sidebarLogo: sidebarLogo,
-  menuType: 'system',
-  Layout: 'top'
+  menuType: menuType,
+  Layout: Layout,
+  plugins: {}
 }
 
 const mutations = {
@@ -38,6 +41,10 @@ const mutations = {
   },
   SET_LAYOUT: (state, Layout) => {
     state.Layout = Layout
+  },
+  SET_PLUGINS: (state, plugins) => {
+    console.log('plugins00', plugins)
+    state.plugins = plugins
   }
 }
 
@@ -51,6 +58,11 @@ const actions = {
     commit
   }, menuType) {
     commit('SET_MENUTYPE', menuType)
+  },
+  setPlugins({
+    commit
+  }, plugins) {
+    commit('SET_PLUGINS', plugins)
   },
   setLayout({
     commit

@@ -1,6 +1,11 @@
 <template>
   <div>
-    <el-input v-model="iconName" placeholder="图标名称">
+    <el-input
+      v-model="iconName"
+      v-bind="attrs"
+      placeholder="图标名称"
+      v-on="desc.on"
+    >
       <el-button slot="append" @click="slectIcon">
         选择图标
       </el-button>
@@ -14,23 +19,19 @@
       append-to-body
     >
       <div class="icons-container">
-        <el-tabs type="border-card">
-          <el-tab-pane v-for="(item,index) of svgIcons" :key="index" :label="item.name">
-            <div class="grid icon-content">
-              <div v-for="(icon,idx) of iconList[item.key]" :key="idx" @click="handleClipboard(icon,$event)">
-                <el-tooltip placement="top">
-                  <div slot="content">
-                    {{ generateElementIconCode(icon) }}
-                  </div>
-                  <div class="icon-item">
-                    <i :class="'fa sub-el-icon  ' + icon" />
-                    <span>{{ icon }}</span>
-                  </div>
-                </el-tooltip>
+        <div class="grid icon-content">
+          <div v-for="(icon,idx) of iconList" :key="idx" @click="handleClipboard(icon,$event)">
+            <el-tooltip placement="top">
+              <div slot="content">
+                {{ generateElementIconCode(icon) }}
               </div>
-            </div>
-          </el-tab-pane>
-        </el-tabs>
+              <div class="icon-item">
+                <i :class="'sub-el-icon  ' + icon" />
+                <span>{{ icon }}</span>
+              </div>
+            </el-tooltip>
+          </div>
+        </div>
       </div>
     </el-drawer>
 
@@ -46,7 +47,7 @@
 
 <script>
 import formMixin from 'diandi-ele-form/lib/mixins/formMixin'
-import icons from './fire-icons.js'
+import webApplication from './fire-icons.js'
 export default {
   name: 'FireIcon',
   mixins: [formMixin],
@@ -54,6 +55,10 @@ export default {
     // desc是此组件的描述, 结构为
     // { style: {}, class: {}, on: {}, attrs: {} }
     // value 是传递过来的值
+    value: {
+      type: String,
+      default: ''
+    },
     desc: {
       type: Object,
       default() {
@@ -139,14 +144,26 @@ export default {
       return this.$store.getters.errorLogs
     }
   },
+  watch: {
+    value: {
+      handler(newVal) {
+        if (newVal) {
+          this.iconName = newVal
+        }
+      },
+      immediate: true,
+      deep: true
+    }
+  },
   created() {
     const that = this
     const iconList = {}
-    that.svgIcons.forEach((item, index) => {
-      that.$set(iconList, item.key, icons[item.key])
-    })
+    console.log('webApplication', this.value)
+    // webApplication.forEach((item, index) => {
+    //   that.$set(iconList, item.key, webApplication[item.key])
+    // })
     console.log('iconList', iconList)
-    that.iconList = iconList
+    that.iconList = webApplication
   },
   methods: {
     slectIcon() {
@@ -165,11 +182,11 @@ export default {
       return `<svg-icon icon-class="${symbol}" />`
     },
     generateElementIconCode(symbol) {
-      return `<i class="el-icon-${symbol}" />`
+      return `<i class="${symbol}" />`
     },
     handleClipboard(text, event) {
       const that = this
-      that.iconName = 'fa ' + text
+      that.iconName = text
       that.$emit('input', that.iconName)
       this.dialogVisible = false
       console.log(text, event)
@@ -187,6 +204,10 @@ export default {
     .icon-content {
       height: 90vh;
       overflow: overlay;
+    }
+
+    .sub-el-icon{
+      font-size: 30px;
     }
 
     .grid {

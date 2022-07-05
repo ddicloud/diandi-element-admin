@@ -2,7 +2,7 @@
  * @Author: Wang chunsheng  email:2192138785@qq.com
  * @Date:   2021-10-30 10:40:37
  * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
- * @Last Modified time: 2021-12-01 10:05:52
+ * @Last Modified time: 2022-05-25 21:22:49
  */
 import store from '@/store'
 
@@ -14,8 +14,8 @@ import store from '@/store'
 export default function checkPermission(value) {
   if (value && value instanceof Array && value.length > 0) {
     const roles = store.getters && store.getters.roles
+    console.log('roles', store.getters.roles)
     const permissionRoles = value
-
     const hasPermission = roles.some(role => {
       return permissionRoles.includes(role)
     })

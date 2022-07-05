@@ -54,7 +54,7 @@ export default {
         }
       ],
       value1: true,
-      layoutVal: '顶部'
+      layoutVal: '分栏'
     }
   },
   computed: {

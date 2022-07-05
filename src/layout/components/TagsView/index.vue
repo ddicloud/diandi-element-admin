@@ -211,7 +211,6 @@ export default {
       }
     },
     openMenu(tag, e) {
-      console.log('openMenu', tag, e)
       const menuMinWidth = 105
       const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
       const offsetWidth = this.$el.offsetWidth // container width

@@ -2,10 +2,12 @@
  * @Author: Wang chunsheng  email:2192138785@qq.com
  * @Date:   2021-10-30 10:40:26
  * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
- * @Last Modified time: 2022-01-22 01:38:08
+ * @Last Modified time: 2022-04-12 11:57:19
  */
 import Cookies from 'js-cookie'
-import { modeType, bloc_id, store_id } from '@/config/config'
+import { config } from '@/utils/publicUtil'
+
+const modeType = config.modeType; const bloc_id = config.bloc_id; const store_id = config.store_id
 
 const state = {
   sidebar: {

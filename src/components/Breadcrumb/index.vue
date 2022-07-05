@@ -11,12 +11,17 @@
 
 <script>
 import pathToRegexp from 'path-to-regexp'
-
+import {
+  mapGetters
+} from 'vuex'
 export default {
   data() {
     return {
       levelList: null
     }
+  },
+  computed: {
+    ...mapGetters(['menuType'])
   },
   watch: {
     $route(route) {
@@ -35,9 +40,9 @@ export default {
       // only show routes with meta.title
       let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
       const first = matched[0]
-
+      console.log('menuType', this.menuType)
       if (!this.isDashboard(first)) {
-        matched = [{ path: '/dashboard', meta: { title: 'Dashboard' }}].concat(matched)
+        matched = [{ path: '/dashboard', meta: { title: this.menuType === 'system' ? '控制台' : '客户端' }}].concat(matched)
       }
 
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
@@ -47,7 +52,9 @@ export default {
       if (!name) {
         return false
       }
+      console.log('name.trim().toLocaleLowerCase()', name, name.trim().toLocaleLowerCase())
       return name.trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
+      // return (name.trim().toLocaleLowerCase() === '控制台' || name.trim().toLocaleLowerCase() === '客户端').toLocaleLowerCase()
     },
     pathCompile(path) {
       // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561

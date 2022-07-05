@@ -1,3 +1,9 @@
+/**
+ * @Author: Wang chunsheng  email:2192138785@qq.com
+ * @Date:   2022-04-19 09:37:20
+ * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
+ * @Last Modified time: 2022-05-25 22:04:50
+ */
 const state = {
   logs: []
 }

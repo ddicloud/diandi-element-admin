@@ -18,12 +18,15 @@ https://www.hopesfire.com/
 
 ### 官方仓库：	
 
- 1. 中后台，基于element-ui:
-  	[https://gitee.com/wayfiretech_admin/diandi-element-admin](https://gitee.com/wayfiretech_admin/diandi-element-admin)
- 3.  uniapp :
-     [https://gitee.com/wayfiretech_admin/diandi-fireui](https://gitee.com/wayfiretech_admin/diandi-fireui)
- 4. 数据处理中心（后端）：   
+## 店滴CMS开源版
+    [https://gitee.com/wayfirer/diandicms](https://gitee.com/wayfirer/diandicms)
+## 中后台，基于element-ui:
+  	[https://gitee.com/wayfirer/diandi-element-admin](https://gitee.com/wayfirer/diandi-element-admin)
+## uniapp :
+    [https://gitee.com/wayfirer/diandi-fireui](https://gitee.com/wayfirer/diandi-fireui)
+## 数据处理中心（后端）：   
     [https://gitee.com/wayfiretech_admin/diandi-admin](https://gitee.com/wayfiretech_admin/diandi-admin)
+
 
 ### 开发辅助：
 

@@ -2,11 +2,13 @@
  * @Author: Wang chunsheng  email:2192138785@qq.com
  * @Date:   2021-10-30 10:40:26
  * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
- * @Last Modified time: 2022-02-18 09:21:58
+ * @Last Modified time: 2022-05-07 16:26:59
  */
 'use strict'
 const path = require('path')
+const DianDiConfigPlugin = require('./src/utils/DainDiConfigPlugin.js')
 const defaultSettings = require('./src/settings.js')
+const indexHtml = require('./index.html')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -30,7 +32,8 @@ module.exports = {
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
   publicPath: '/pro-admin',
-  outputDir: 'dist',
+  outputDir: 'dist/pro-admin',
+  indexPath: '../index.html',
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
@@ -124,6 +127,22 @@ module.exports = {
       // https:// webpack.js.org/configuration/optimization/#optimizationruntimechunk
       config.optimization.runtimeChunk('single')
     })
+
+    // 动态配置
+    if (process.env.NODE_ENV === 'production') {
+      config.plugin('DianDiConfigPlugin').use(new DianDiConfigPlugin([
+        {
+          fileName: 'micro-service-config.js',
+          path: 'public/configs',
+          content: ''
+        },
+        {
+          fileName: 'index.html',
+          path: 'public',
+          content: indexHtml
+        }
+      ]))
+    }
   },
   transpileDependencies: ['diandi-admin']
 }

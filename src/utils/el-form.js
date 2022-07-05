@@ -2,7 +2,7 @@
  * @Author: Wang chunsheng  email:2192138785@qq.com
  * @Date:   2021-11-14 11:37:10
  * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
- * @Last Modified time: 2022-01-26 23:58:15
+ * @Last Modified time: 2022-05-25 20:18:59
  */
 import Vue from 'vue'
 import store from '@/store'
@@ -97,11 +97,11 @@ Vue.use(EleForm, {
     action: store.getters.elForm.uploadFile, // 上传地址
     // action: 'https://jsonplaceholder.typicode.com/posts' // 上传地址
     responseFn(response, file, fileList) {
-      console.log('video up',response)
+      console.log('video up', response)
       return response.data.attachment
     }
   },
-  // 属性参考: https://vue-treeselect.js.org/
+  // 属性参考: https://vue-treeselect.js.org/ https://vue-treeselect.cn/
   'tree-select': {
     clearable: true // 所有的 tree-select 都会有 clearable = true的属性值
   },

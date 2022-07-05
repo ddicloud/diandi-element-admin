@@ -2,7 +2,7 @@
  * @Author: Wang chunsheng  email:2192138785@qq.com
  * @Date:   2021-10-27 09:56:29
  * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
- * @Last Modified time: 2022-01-22 13:56:15
+ * @Last Modified time: 2022-05-05 18:20:21
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -42,7 +42,8 @@ const store = new Vuex.Store({
           elForm: val.elForm,
           app: val.app,
           user: val.user,
-          settings: val.settings
+          settings: val.settings,
+          pluginsMenu: val.permission.pluginsMenu
         }
       },
       storage: {

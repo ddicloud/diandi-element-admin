@@ -6,7 +6,7 @@
 
 <style lang="scss">
 /*每个页面公共css uParse为优化版本*/
-@import "./styles/font-awesome.min.css";
+@import "./styles/iconfont/iconfont.css";
 </style>
 <script>
 import { mapState } from 'vuex'

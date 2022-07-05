@@ -2,7 +2,7 @@
  * @Author: Wang chunsheng  email:2192138785@qq.com
  * @Date:   2021-10-30 10:40:39
  * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
- * @Last Modified time: 2021-12-01 10:05:34
+ * @Last Modified time: 2022-05-05 12:33:36
  */
  /* 细节控制样式 */
  .round {
@@ -862,3 +862,15 @@
  .lines-white {
      color: #ffffff;
  }
+
+[class^="el-dd"], [class*="el-dd"]
+{
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+ 
+ 
+ 

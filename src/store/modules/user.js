@@ -2,7 +2,7 @@
  * @Author: Wang chunsheng  email:2192138785@qq.com
  * @Date:   2021-10-30 10:40:26
  * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
- * @Last Modified time: 2022-02-14 18:30:27
+ * @Last Modified time: 2022-05-25 22:03:50
  */
 import {
   login,
@@ -33,6 +33,9 @@ const mutations = {
   SET_TOKEN: (state, token) => {
     state.access_token = token
   },
+  SET_ROLES: (state, roles) => {
+    state.roles = roles
+  },
   SET_WEBSITE: (state, webSite) => {
     state.webSite = webSite
   },
@@ -58,7 +61,6 @@ const actions = {
   login({
     commit
   }, userInfo) {
-    console.log(userInfo)
     const {
       username,
       password,
@@ -82,7 +84,6 @@ const actions = {
           access_token,
           addons
         } = response.data
-        console.log(access_token, addons)
         if (addons) {
           commit('SET_ADDONS', addons)
         }
@@ -129,7 +130,13 @@ const actions = {
       })
     })
   },
+  setRoles({
+    commit
+  }, roles) {
+    console.log('roles1', roles)
 
+    commit('SET_ROLES', roles)
+  },
   // user logout
   logout({
     commit,

@@ -2,7 +2,7 @@
  * @Author: Wang chunsheng  email:2192138785@qq.com
  * @Date:   2021-10-30 10:40:37
  * @Last Modified by:   Wang chunsheng  email:2192138785@qq.com
- * @Last Modified time: 2022-02-16 18:12:18
+ * @Last Modified time: 2022-06-13 13:27:13
  */
 import router from './router'
 import store from './store'
@@ -52,8 +52,10 @@ router.beforeEach(async(to, from, next) => {
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
           const {
-            access_token
+            access_token, roles
           } = await store.dispatch('user/getInfo')
+          // 动态生成路由
+          store.dispatch('user/setRoles', roles)
           // generate accessible routes map based on roles
           const accessRoutes = await store.dispatch('permission/getMenus', access_token)
           // dynamically add accessible routes

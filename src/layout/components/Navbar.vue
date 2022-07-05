@@ -38,14 +38,14 @@
             <i class="el-icon-caret-bottom" />
           </div>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item @click.native="backSys">返回系统</el-dropdown-item>
+            <el-dropdown-item v-if="checkPermission(['总管理员'])" @click.native="backSys">返回系统</el-dropdown-item>
             <router-link to="/Profile">
               <el-dropdown-item>个人资料</el-dropdown-item>
             </router-link>
             <a target="_blank" href="http://doc.hopesfire.com/admin/">
               <el-dropdown-item>开发手册</el-dropdown-item>
             </a>
-            <el-dropdown-item @click.native="clearCache">清除缓存</el-dropdown-item>
+            <el-dropdown-item v-if="checkPermission(['总管理员'])" @click.native="clearCache">清除缓存</el-dropdown-item>
             <el-dropdown-item divided @click.native="logout"><span style="display:block;">退出登陆</span></el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -72,9 +72,10 @@ import {
   fetchList
 } from 'diandi-admin/lib/api/addons/store.js'
 import {
-  setBlocCache
+  setBlocCache,
+  clearCache
 } from 'diandi-admin/lib/api/system/system.js'
-
+import checkPermission from '@/utils/permission' // 权限判断函数
 export default {
   components: {
     Hamburger,
@@ -100,10 +101,11 @@ export default {
   },
   computed: {
     ...mapGetters(['sidebar', 'avatar', 'username', 'device', 'menutop', 'menuType', 'LeftMenu', 'storeName',
-      'baseUrl', 'fixedHeader', 'Layout'
+      'baseUrl', 'fixedHeader', 'Layout', 'roles'
     ])
   },
   methods: {
+    checkPermission,
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
@@ -143,7 +145,6 @@ export default {
       })
       const id = menus[0].id
       that.isActive = id
-
       this.$store.commit('permission/SET_LEFTACTIVE', id)
     },
     backSys() {
@@ -161,7 +162,16 @@ export default {
       })
     },
     clearCache: function() {
-
+      const that = this
+      clearCache({
+        cache: true,
+        template: true
+      }).then(res => {
+        const { code } = res
+        if (code === 200) {
+          that.$message.success('清理成功')
+        }
+      })
     },
     setBloc: function(e) {
       const that = this
@@ -272,6 +282,7 @@ export default {
             cursor: pointer;
             width: 40px;
             height: 40px;
+            overflow: hidden;
             border-radius: 10px;
           }
 
@@ -340,6 +351,7 @@ export default {
             cursor: pointer;
             width: max-content;
             height: 40px;
+            overflow: hidden;
             border-radius: 10px;
           }
 
